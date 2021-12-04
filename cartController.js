@@ -82,4 +82,18 @@ app.controller('cartController',function ($scope,cartService) {
             }
         )
     }
+    
+     $scope.findAddressList=function () {
+        cartService.findAddressList().success(
+            function (response) {
+                $scope.addressList=response;
+                for(var i=0;i<$scope.addressList.length;i++){
+                    if($scope.addressList[i].isDefault=='1'){
+                        $scope.address=$scope.addressList[i];
+                        break;
+                    }
+                }
+            }
+        )
+    }
 })
